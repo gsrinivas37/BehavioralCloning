@@ -31,7 +31,7 @@ The goals / steps of this project are the following:
 ####1. Submission includes all required files and can be used to run the simulator in autonomous mode
 
 My project includes the following files:
-* model.py containing the script to create and train the model
+* model.ipynb containing the script to create and train the model
 * drive.py for driving the car in autonomous mode
 * model.h5 containing a trained convolution neural network 
 * writeup_report.md or writeup_report.pdf summarizing the results
@@ -100,20 +100,19 @@ Here is a visualization of the architecture
 
 ####3. Creation of the Training Set & Training Process
 
-To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving. 
+To capture good driving behavior, I followed below strategy.
 
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to ..
+1. I recorded the training for close to two loops driving mostly in the centre of the lane.
+2. I recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to come back to the centre if it even crossed the border.
+3. I also recorded more data around the corners at slower speed because I wanted the model to have more data around the corners.
+4. I used the recorded data in conjunction with data from https://d17h27t6h515a5.cloudfront.net/topher/2016/December/584f6edd_data/data.zip
 
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
+To augment the data set, I also flipped images so that I can easily double the number of images and also the model learns to steer both to left and right with one image.
 
-![alt text][image6]
-![alt text][image7]
+After the collection process, I had 15022 number of data points. I then preprocessed this data by
+1. Normalizing the values by dividing by 255 and substracted by 0.5
+2. Removed the top 70 and bottom 25 pixels to remove unnecessary distractions.
 
-Etc ....
+I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
-After the collection process, I had X number of data points. I then preprocessed this data by ...
-
-
-I finally randomly shuffled the data set and put Y% of the data into a validation set. 
-
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. I used 5 epochs. I used an adam optimizer so that manually training the learning rate wasn't necessary.
