@@ -53,8 +53,6 @@ The model.py file contains the code for training and saving the convolution neur
 I have used an architecture published by NVidia self driving car team linked below.
 https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/
 
-![alt text][network]
-
 The model consists of a five convolution layers followed by three fully connected layers. First 3 convolutional layers have 5x5 kernel with 2x2 stride and next two layers have 3x3 kernel size without any stride.
 
 The model includes RELU layers to introduce nonlinearity, and the data is normalized in the model using a Keras lambda layer. 
