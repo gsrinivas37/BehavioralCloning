@@ -60,7 +60,6 @@ The model includes RELU layers to introduce nonlinearity, and the data is normal
 ####2. Attempts to reduce overfitting in the model
 
 To avoid overfitting, 
-1. I added Dropout with 30% for fully connected layers.
 1. I augmented the data with flipping the images so that the model learns to steer to the left and the right.
 2. I used images from all three angles (left, centre and right) and used correction factor of 0.2.
 
