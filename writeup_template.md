@@ -107,7 +107,7 @@ To capture good driving behavior, I followed below strategy.
 3. I also recorded more data around the corners at slower speed because I wanted the model to have more data around the corners.
 4. I used the recorded data in conjunction with data from https://d17h27t6h515a5.cloudfront.net/topher/2016/December/584f6edd_data/data.zip
 
-To augment the data sat, I also flipped images so that I can easily double the number of images and also the model learns to steer both to left and right.
+To augment the data set, I also flipped images so that I can easily double the number of images and also the model learns to steer both to left and right with one image.
 
 After the collection process, I had 15022 number of data points. I then preprocessed this data by
 1. Normalizing the values by dividing by 255 and substracted by 0.5
