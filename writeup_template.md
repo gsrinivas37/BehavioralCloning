@@ -109,7 +109,7 @@ To capture good driving behavior, I followed below strategy.
 
 To augment the data sat, I also flipped images so that I can easily double the number of images and also the model learns to steer both to left and right.
 
-After the collection process, I had 13107*6 number of data points. I then preprocessed this data by
+After the collection process, I had 15022 number of data points. I then preprocessed this data by
 1. Normalizing the values by dividing by 255 and substracted by 0.5
 2. Removed the top 70 and bottom 25 pixels to remove unnecessary distractions.
 
