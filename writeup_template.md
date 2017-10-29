@@ -106,7 +106,7 @@ To capture good driving behavior, I followed below strategy.
 1. I recorded the training for close to two loops driving mostly in the centre of the lane.
 2. I recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to come back to the centre if it even crossed the border.
 3. I also recorded more data around the corners at slower speed because I wanted the model to have more data around the corners.
-4. I used the recorded in conjunction with data from https://d17h27t6h515a5.cloudfront.net/topher/2016/December/584f6edd_data/data.zip
+4. I used the recorded data in conjunction with data from https://d17h27t6h515a5.cloudfront.net/topher/2016/December/584f6edd_data/data.zip
 
 To augment the data sat, I also flipped images so that I can easily double the number of images and also the model learns to steer both to left and right.
 
