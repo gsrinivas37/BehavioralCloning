@@ -53,22 +53,23 @@ The model.py file contains the code for training and saving the convolution neur
 I have used an architecture published by NVidia self driving car team linked below.
 https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/
 
+![alt text][network]
+
 The model consists of a five convolution layers followed by three fully connected layers. First 3 convolutional layers have 5x5 kernel with 2x2 stride and next two layers have 3x3 kernel size without any stride.
 
 The model includes RELU layers to introduce nonlinearity, and the data is normalized in the model using a Keras lambda layer. 
 
-![alt text][network]
-
-
 ####2. Attempts to reduce overfitting in the model
 
-The model contains dropout layers in order to reduce overfitting (model.py lines 21). 
+To avoid overfitting, 
+1. I augmented the data with flipping the images so that the model learns to steer to the left and the right.
+2. I used images from all three angles (left, centre and right) and used correction factor of 0.2.
 
-The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 10-16). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
+The model was trained and validated on different data sets to ensure that the model was not overfitting. The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
 ####3. Model parameter tuning
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 25).
+The model used an adam optimizer, so the learning rate was not tuned manually.
 
 ####4. Appropriate training data
 
@@ -80,41 +81,30 @@ For details about how I created the training data, see the next section.
 
 ####1. Solution Design Approach
 
-The overall strategy for deriving a model architecture was to ...
+The followed the below steps to finally arrived at my final solutions.
 
-My first step was to use a convolution neural network model similar to the ... I thought this model might be appropriate because ...
-
-In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
-
-To combat the overfitting, I modified the model so that ...
-
-Then I ... 
-
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
-
-At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
+1. I started with single layer architecture to train the model. I used the sample training data and created the model.h5 file and used to test that it drives the simulator in Autonomous mode. It did work even though it didn't drive well but it provided me starting point to verify that I can train a model and use it to drive the vehicle.
+2. Next I tried to use the well-knows LeNet architecture and have done some pre-processing of input data.
+3. I have divided the pixels by 255 and subtracted 0.5 so that the values are centered around 0 with a deviation of 0.5
+4. I augemented the input samples by flipping each of the image and negating the steering angle. This way the model learns to steer in both directions.
+5. I have removed the upper 70 and lower 25 pixels which contains trees, mountains, car hood, etc which distracts the model to learn properly.
+6. With above changes, the model was able to drive the car much better. It was not perfect but it was very close.
+7. Next I tried to use all the three images from different cameras. Earlier I was using only center camera image. I used correction factor of 0.2 to force the car to steer to the right/left based on whether the image is from left or right camera.
+8. Also I used a better network architecture published by NVidia self driving car team.
+9. With the above changes, the model was able to drive the car on the road without going beyond the borders.
+10. Later I generated more data by driving the simulator by driving around corners, sterring to the centre from the sides to finetune the model even better.
 
 ####2. Final Model Architecture
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
+Here is a visualization of the architecture 
 
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
-
-![alt text][image1]
+![alt text][network]
 
 ####3. Creation of the Training Set & Training Process
 
-To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
+To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving. 
 
-![alt text][image2]
-
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
-
-![alt text][image3]
-![alt text][image4]
-![alt text][image5]
-
-Then I repeated this process on track two in order to get more data points.
+I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to ..
 
 To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
 
